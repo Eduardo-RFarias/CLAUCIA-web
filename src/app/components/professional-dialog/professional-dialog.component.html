@@ -1,0 +1,142 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>
+      <mat-icon>{{ isEditMode ? "edit" : "person_add" }}</mat-icon>
+      {{ isEditMode ? "Edit Professional" : "Add New Professional" }}
+    </h2>
+    <button mat-icon-button (click)="onCancel()" class="close-button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form
+    [formGroup]="professionalForm"
+    (ngSubmit)="onSubmit()"
+    class="professional-form"
+  >
+    <div class="form-content">
+      <!-- COREN Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>COREN Registration</mat-label>
+        <mat-icon matPrefix>badge</mat-icon>
+        <input
+          matInput
+          formControlName="coren"
+          placeholder="COREN-SP-123456"
+          [class.mat-input-invalid]="
+            professionalForm.get('coren')?.invalid &&
+            professionalForm.get('coren')?.touched
+          "
+        />
+        @if (
+          professionalForm.get("coren")?.invalid &&
+          professionalForm.get("coren")?.touched
+        ) {
+          <mat-error>{{ getErrorMessage("coren") }}</mat-error>
+        }
+        @if (isEditMode) {
+          <mat-hint>COREN cannot be changed after creation</mat-hint>
+        }
+      </mat-form-field>
+
+      <!-- Name Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Full Name</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Enter professional's full name"
+          [class.mat-input-invalid]="
+            professionalForm.get('name')?.invalid &&
+            professionalForm.get('name')?.touched
+          "
+        />
+        @if (
+          professionalForm.get("name")?.invalid &&
+          professionalForm.get("name")?.touched
+        ) {
+          <mat-error>{{ getErrorMessage("name") }}</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- Password Field -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{
+          isEditMode ? "New Password (optional)" : "Password"
+        }}</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          [placeholder]="
+            isEditMode
+              ? 'Leave empty to keep current password'
+              : 'Enter password'
+          "
+          [class.mat-input-invalid]="
+            professionalForm.get('password')?.invalid &&
+            professionalForm.get('password')?.touched
+          "
+        />
+        @if (
+          professionalForm.get("password")?.invalid &&
+          professionalForm.get("password")?.touched
+        ) {
+          <mat-error>{{ getErrorMessage("password") }}</mat-error>
+        }
+        @if (isEditMode) {
+          <mat-hint>Leave empty to keep current password</mat-hint>
+        }
+      </mat-form-field>
+
+      <!-- Institution Info -->
+      @if (data.institutionName) {
+        <div class="institution-info">
+          <mat-icon>business</mat-icon>
+          <span
+            >Institution: <strong>{{ data.institutionName }}</strong></span
+          >
+        </div>
+      }
+    </div>
+
+    <div class="dialog-actions">
+      <button
+        mat-button
+        type="button"
+        (click)="onCancel()"
+        class="cancel-button"
+      >
+        Cancel
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="
+          professionalForm.invalid ||
+          (!hasChanges() && isEditMode) ||
+          isLoading()
+        "
+        class="submit-button"
+      >
+        @if (isLoading()) {
+          <ng-container>
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>{{ isEditMode ? "Updating..." : "Creating..." }}</span>
+          </ng-container>
+        } @else {
+          <ng-container>
+            <mat-icon>{{ isEditMode ? "save" : "add" }}</mat-icon>
+            <span>{{
+              isEditMode ? "Update Professional" : "Create Professional"
+            }}</span>
+          </ng-container>
+        }
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,141 @@
+.dialog-container {
+  padding: 0;
+  max-width: 500px;
+  width: 100%;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--mat-sys-on-surface);
+  }
+
+  .close-button {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+.professional-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.form-content {
+  padding: 24px;
+  flex: 1;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.institution-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--mat-sys-surface-container);
+  border-radius: 12px;
+  margin-top: 8px;
+  color: var(--mat-sys-on-surface-variant);
+
+  mat-icon {
+    color: var(--mat-sys-primary);
+  }
+
+  strong {
+    color: var(--mat-sys-on-surface);
+  }
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 24px 24px;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface-container-lowest);
+}
+
+.cancel-button {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.submit-button {
+  min-width: 140px;
+
+  // Fix icon alignment in buttons
+  ::ng-deep .mdc-button__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+  }
+
+  mat-spinner {
+    margin-right: 8px;
+  }
+}
+
+// Form field customizations
+mat-form-field {
+  mat-icon[matPrefix] {
+    color: var(--mat-sys-on-surface-variant);
+    margin-right: 12px;
+  }
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .dialog-container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  .dialog-header {
+    padding: 16px;
+
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .form-content {
+    padding: 16px;
+  }
+
+  .dialog-actions {
+    padding: 16px;
+    flex-direction: column;
+
+    .cancel-button,
+    .submit-button {
+      width: 100%;
+      margin: 4px 0;
+    }
+  }
+}
