@@ -14,6 +14,7 @@ import { environment } from '../../environments/environment';
 export class ProfessionalService {
   private readonly http = inject(HttpClient);
   private readonly API_URL = environment.apiUrl;
+  private readonly CDN_URL = environment.cdnUrl;
 
   /**
    * Get all professionals
@@ -23,12 +24,12 @@ export class ProfessionalService {
       .get<ProfessionalResponseDto[]>(`${this.API_URL}/professionals`)
       .pipe(
         map((professionals) =>
-          professionals.map((p) => this.processImageUrl(p)),
+          professionals.map((p) => this.processImageUrl(p))
         ),
         catchError((error) => {
           console.error('Error fetching professionals:', error);
           return throwError(() => error);
-        }),
+        })
       );
   }
 
@@ -38,14 +39,14 @@ export class ProfessionalService {
   getProfessionalByCoren(coren: string): Observable<ProfessionalResponseDto> {
     return this.http
       .get<ProfessionalResponseDto>(
-        `${this.API_URL}/professionals/${encodeURIComponent(coren)}`,
+        `${this.API_URL}/professionals/${encodeURIComponent(coren)}`
       )
       .pipe(
         map((professional) => this.processImageUrl(professional)),
         catchError((error) => {
           console.error('Error fetching professional:', error);
           return throwError(() => error);
-        }),
+        })
       );
   }
 
@@ -53,19 +54,19 @@ export class ProfessionalService {
    * Create a new professional
    */
   createProfessional(
-    professional: CreateProfessionalDto,
+    professional: CreateProfessionalDto
   ): Observable<ProfessionalResponseDto> {
     return this.http
       .post<ProfessionalResponseDto>(
         `${this.API_URL}/professionals`,
-        professional,
+        professional
       )
       .pipe(
         map((professional) => this.processImageUrl(professional)),
         catchError((error) => {
           console.error('Error creating professional:', error);
           return throwError(() => error);
-        }),
+        })
       );
   }
 
@@ -74,19 +75,19 @@ export class ProfessionalService {
    */
   updateProfessional(
     coren: string,
-    updates: UpdateProfessionalDto,
+    updates: UpdateProfessionalDto
   ): Observable<ProfessionalResponseDto> {
     return this.http
       .patch<ProfessionalResponseDto>(
         `${this.API_URL}/professionals/${encodeURIComponent(coren)}`,
-        updates,
+        updates
       )
       .pipe(
         map((professional) => this.processImageUrl(professional)),
         catchError((error) => {
           console.error('Error updating professional:', error);
           return throwError(() => error);
-        }),
+        })
       );
   }
 
@@ -96,13 +97,13 @@ export class ProfessionalService {
   deleteProfessional(coren: string): Observable<void> {
     return this.http
       .delete<void>(
-        `${this.API_URL}/professionals/${encodeURIComponent(coren)}`,
+        `${this.API_URL}/professionals/${encodeURIComponent(coren)}`
       )
       .pipe(
         catchError((error) => {
           console.error('Error deleting professional:', error);
           return throwError(() => error);
-        }),
+        })
       );
   }
 
@@ -110,7 +111,7 @@ export class ProfessionalService {
    * Process image URL to make it absolute
    */
   private processImageUrl(
-    professional: ProfessionalResponseDto,
+    professional: ProfessionalResponseDto
   ): ProfessionalResponseDto {
     if (
       professional.photo &&
@@ -118,7 +119,7 @@ export class ProfessionalService {
     ) {
       return {
         ...professional,
-        photo: `${this.API_URL}${professional.photo}`,
+        photo: `${this.CDN_URL}${professional.photo}`,
       };
     }
     return professional;
@@ -131,7 +132,7 @@ export class ProfessionalService {
     if (!relativeUrl) return '';
     if (relativeUrl.startsWith('http')) return relativeUrl;
     if (relativeUrl.startsWith('/uploads/images/')) {
-      return `${this.API_URL}${relativeUrl}`;
+      return `${this.CDN_URL}${relativeUrl}`;
     }
     return relativeUrl;
   }
