@@ -69,7 +69,7 @@ export class LoginComponent {
       this.authService.login(credentials).subscribe({
         next: () => {
           this.isLoading.set(false);
-          this.snackBar.open('Login successful!', 'Close', {
+          this.snackBar.open('Login realizado com sucesso!', 'Fechar', {
             duration: 3000,
             panelClass: ['success-snackbar'],
           });
@@ -79,8 +79,8 @@ export class LoginComponent {
           this.isLoading.set(false);
           const errorMessage =
             error.error?.message ||
-            'Login failed. Please check your credentials.';
-          this.snackBar.open(errorMessage, 'Close', {
+            'Falha no login. Verifique suas credenciais.';
+          this.snackBar.open(errorMessage, 'Fechar', {
             duration: 5000,
             panelClass: ['error-snackbar'],
           });

@@ -88,7 +88,7 @@ export class DashboardComponent implements OnInit {
       error: (error) => {
         console.error('Error loading professionals:', error);
         this.isLoading.set(false);
-        this.snackBar.open('Error loading professionals', 'Close', {
+        this.snackBar.open('Erro ao carregar profissionais', 'Fechar', {
           duration: 3000,
           panelClass: ['error-snackbar'],
         });
@@ -145,7 +145,7 @@ export class DashboardComponent implements OnInit {
           ...professionals,
           newProfessional,
         ]);
-        this.snackBar.open('Professional created successfully', 'Close', {
+        this.snackBar.open('Profissional criado com sucesso', 'Fechar', {
           duration: 3000,
           panelClass: ['success-snackbar'],
         });
@@ -153,8 +153,8 @@ export class DashboardComponent implements OnInit {
       error: (error) => {
         console.error('Error creating professional:', error);
         const errorMessage =
-          error.error?.message || 'Error creating professional';
-        this.snackBar.open(errorMessage, 'Close', {
+          error.error?.message || 'Erro ao criar profissional';
+        this.snackBar.open(errorMessage, 'Fechar', {
           duration: 5000,
           panelClass: ['error-snackbar'],
         });
@@ -170,10 +170,10 @@ export class DashboardComponent implements OnInit {
       next: (updatedProfessional) => {
         this.professionals.update((professionals) =>
           professionals.map((p) =>
-            p.coren === coren ? updatedProfessional : p,
-          ),
+            p.coren === coren ? updatedProfessional : p
+          )
         );
-        this.snackBar.open('Professional updated successfully', 'Close', {
+        this.snackBar.open('Profissional atualizado com sucesso', 'Fechar', {
           duration: 3000,
           panelClass: ['success-snackbar'],
         });
@@ -181,8 +181,8 @@ export class DashboardComponent implements OnInit {
       error: (error) => {
         console.error('Error updating professional:', error);
         const errorMessage =
-          error.error?.message || 'Error updating professional';
-        this.snackBar.open(errorMessage, 'Close', {
+          error.error?.message || 'Erro ao atualizar profissional';
+        this.snackBar.open(errorMessage, 'Fechar', {
           duration: 5000,
           panelClass: ['error-snackbar'],
         });
@@ -194,15 +194,15 @@ export class DashboardComponent implements OnInit {
    * Delete a professional
    */
   deleteProfessional(professional: ProfessionalResponseDto): void {
-    if (confirm(`Are you sure you want to delete ${professional.name}?`)) {
+    if (confirm(`Tem certeza de que deseja excluir ${professional.name}?`)) {
       this.professionalService
         .deleteProfessional(professional.coren)
         .subscribe({
           next: () => {
             this.professionals.update((professionals) =>
-              professionals.filter((p) => p.coren !== professional.coren),
+              professionals.filter((p) => p.coren !== professional.coren)
             );
-            this.snackBar.open('Professional deleted successfully', 'Close', {
+            this.snackBar.open('Profissional excluído com sucesso', 'Fechar', {
               duration: 3000,
               panelClass: ['success-snackbar'],
             });
@@ -210,8 +210,8 @@ export class DashboardComponent implements OnInit {
           error: (error) => {
             console.error('Error deleting professional:', error);
             const errorMessage =
-              error.error?.message || 'Error deleting professional';
-            this.snackBar.open(errorMessage, 'Close', {
+              error.error?.message || 'Erro ao excluir profissional';
+            this.snackBar.open(errorMessage, 'Fechar', {
               duration: 5000,
               panelClass: ['error-snackbar'],
             });

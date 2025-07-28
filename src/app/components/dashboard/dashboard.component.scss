@@ -107,6 +107,39 @@
 .professionals-table {
   width: 100%;
   background: var(--mat-sys-surface);
+
+  // Fix table row margins and spacing
+  .mat-mdc-row {
+    height: 60px;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+
+    &:hover {
+      background-color: var(--mat-sys-surface-variant);
+    }
+  }
+
+  .mat-mdc-header-row {
+    height: 48px;
+    border-bottom: 2px solid var(--mat-sys-outline);
+    font-weight: 600;
+  }
+
+  .mat-mdc-cell,
+  .mat-mdc-header-cell {
+    padding: 0 16px;
+    border-bottom: none;
+  }
+
+  // Ensure proper spacing for first and last columns
+  .mat-mdc-cell:first-child,
+  .mat-mdc-header-cell:first-child {
+    padding-left: 24px;
+  }
+
+  .mat-mdc-cell:last-child,
+  .mat-mdc-header-cell:last-child {
+    padding-right: 24px;
+  }
 }
 
 .professional-info {

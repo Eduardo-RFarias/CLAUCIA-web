@@ -50,7 +50,7 @@ interface DialogData {
 export class ProfessionalDialogComponent {
   private readonly fb = inject(FormBuilder);
   private readonly dialogRef = inject(
-    MatDialogRef<ProfessionalDialogComponent>,
+    MatDialogRef<ProfessionalDialogComponent>
   );
 
   public professionalForm: FormGroup;
@@ -84,18 +84,18 @@ export class ProfessionalDialogComponent {
     const control = this.professionalForm.get(controlName);
 
     if (control?.hasError('required')) {
-      return `${this.getFieldLabel(controlName)} is required`;
+      return `${this.getFieldLabel(controlName)} é obrigatório`;
     }
 
     if (control?.hasError('minlength')) {
       const minLength = control.errors?.['minlength'].requiredLength;
       return `${this.getFieldLabel(
-        controlName,
-      )} must be at least ${minLength} characters`;
+        controlName
+      )} deve ter pelo menos ${minLength} caracteres`;
     }
 
     if (control?.hasError('pattern') && controlName === 'coren') {
-      return 'COREN must follow format: COREN-XX-123456';
+      return 'COREN deve seguir o formato: COREN-XX-123456';
     }
 
     return '';
@@ -107,8 +107,8 @@ export class ProfessionalDialogComponent {
   private getFieldLabel(controlName: string): string {
     const labels: { [key: string]: string } = {
       coren: 'COREN',
-      name: 'Name',
-      password: 'Password',
+      name: 'Nome',
+      password: 'Senha',
     };
     return labels[controlName] || controlName;
   }
