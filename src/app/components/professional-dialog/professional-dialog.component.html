@@ -28,11 +28,14 @@
             professionalForm.get('coren')?.touched
           "
         />
-        @if ( professionalForm.get("coren")?.invalid &&
-        professionalForm.get("coren")?.touched ) {
-        <mat-error>{{ getErrorMessage("coren") }}</mat-error>
-        } @if (isEditMode) {
-        <mat-hint>COREN não pode ser alterado após a criação</mat-hint>
+        @if (
+          professionalForm.get("coren")?.invalid &&
+          professionalForm.get("coren")?.touched
+        ) {
+          <mat-error>{{ getErrorMessage("coren") }}</mat-error>
+        }
+        @if (isEditMode) {
+          <mat-hint>COREN não pode ser alterado após a criação</mat-hint>
         }
       </mat-form-field>
 
@@ -49,9 +52,11 @@
             professionalForm.get('name')?.touched
           "
         />
-        @if ( professionalForm.get("name")?.invalid &&
-        professionalForm.get("name")?.touched ) {
-        <mat-error>{{ getErrorMessage("name") }}</mat-error>
+        @if (
+          professionalForm.get("name")?.invalid &&
+          professionalForm.get("name")?.touched
+        ) {
+          <mat-error>{{ getErrorMessage("name") }}</mat-error>
         }
       </mat-form-field>
 
@@ -75,22 +80,25 @@
             professionalForm.get('password')?.touched
           "
         />
-        @if ( professionalForm.get("password")?.invalid &&
-        professionalForm.get("password")?.touched ) {
-        <mat-error>{{ getErrorMessage("password") }}</mat-error>
-        } @if (isEditMode) {
-        <mat-hint>Deixe vazio para manter a senha atual</mat-hint>
+        @if (
+          professionalForm.get("password")?.invalid &&
+          professionalForm.get("password")?.touched
+        ) {
+          <mat-error>{{ getErrorMessage("password") }}</mat-error>
+        }
+        @if (isEditMode) {
+          <mat-hint>Deixe vazio para manter a senha atual</mat-hint>
         }
       </mat-form-field>
 
       <!-- Institution Info -->
       @if (data.institutionName) {
-      <div class="institution-info">
-        <mat-icon>business</mat-icon>
-        <span
-          >Instituição: <strong>{{ data.institutionName }}</strong></span
-        >
-      </div>
+        <div class="institution-info">
+          <mat-icon>business</mat-icon>
+          <span
+            >Instituição: <strong>{{ data.institutionName }}</strong></span
+          >
+        </div>
       }
     </div>
 
@@ -116,17 +124,17 @@
         class="submit-button"
       >
         @if (isLoading()) {
-        <ng-container>
-          <mat-spinner diameter="20"></mat-spinner>
-          <span>{{ isEditMode ? "Atualizando..." : "Criando..." }}</span>
-        </ng-container>
+          <ng-container>
+            <mat-spinner diameter="20"></mat-spinner>
+            <span>{{ isEditMode ? "Atualizando..." : "Criando..." }}</span>
+          </ng-container>
         } @else {
-        <ng-container>
-          <mat-icon>{{ isEditMode ? "save" : "add" }}</mat-icon>
-          <span>{{
-            isEditMode ? "Atualizar Profissional" : "Criar Profissional"
-          }}</span>
-        </ng-container>
+          <ng-container>
+            <mat-icon>{{ isEditMode ? "save" : "add" }}</mat-icon>
+            <span>{{
+              isEditMode ? "Atualizar Profissional" : "Criar Profissional"
+            }}</span>
+          </ng-container>
         }
       </button>
     </div>

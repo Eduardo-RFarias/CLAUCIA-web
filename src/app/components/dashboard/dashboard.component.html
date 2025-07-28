@@ -46,95 +46,102 @@
 
       <mat-card-content>
         @if (isLoading()) {
-        <div class="loading-container">
-          <mat-spinner></mat-spinner>
-          <p>Carregando profissionais...</p>
-        </div>
+          <div class="loading-container">
+            <mat-spinner></mat-spinner>
+            <p>Carregando profissionais...</p>
+          </div>
         } @else if (professionals().length === 0) {
-        <div class="empty-state">
-          <mat-icon class="empty-icon">people_outline</mat-icon>
-          <h3>Nenhum profissional encontrado</h3>
-          <p>Comece adicionando seu primeiro profissional ao sistema.</p>
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="openCreateDialog()"
-          >
-            <mat-icon>add</mat-icon>
-            Adicionar Primeiro Profissional
-          </button>
-        </div>
+          <div class="empty-state">
+            <mat-icon class="empty-icon">people_outline</mat-icon>
+            <h3>Nenhum profissional encontrado</h3>
+            <p>Comece adicionando seu primeiro profissional ao sistema.</p>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="openCreateDialog()"
+            >
+              <mat-icon>add</mat-icon>
+              Adicionar Primeiro Profissional
+            </button>
+          </div>
         } @else {
-        <div class="table-container">
-          <table
-            mat-table
-            [dataSource]="professionals()"
-            class="professionals-table"
-          >
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef>Nome</th>
-              <td mat-cell *matCellDef="let professional">
-                <div class="professional-info">
-                  @if ( professional.photo && hasValidImage(professional.photo)
-                  ) {
-                  <img
-                    [src]="professional.photo"
-                    [alt]="professional.name + ' photo'"
-                    class="professional-photo"
-                    (error)="onImageError($event)"
-                  />
-                  } @else {
-                  <mat-icon class="professional-icon">person</mat-icon>
-                  }
-                  <span class="professional-name">{{ professional.name }}</span>
-                </div>
-              </td>
-            </ng-container>
+          <div class="table-container">
+            <table
+              mat-table
+              [dataSource]="professionals()"
+              class="professionals-table"
+            >
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                <td mat-cell *matCellDef="let professional">
+                  <div class="professional-info">
+                    @if (
+                      professional.photo && hasValidImage(professional.photo)
+                    ) {
+                      <img
+                        [src]="professional.photo"
+                        [alt]="professional.name + ' photo'"
+                        class="professional-photo"
+                        (error)="onImageError($event)"
+                      />
+                    } @else {
+                      <mat-icon class="professional-icon">person</mat-icon>
+                    }
+                    <span class="professional-name">{{
+                      professional.name
+                    }}</span>
+                  </div>
+                </td>
+              </ng-container>
 
-            <!-- COREN Column -->
-            <ng-container matColumnDef="coren">
-              <th mat-header-cell *matHeaderCellDef>COREN</th>
-              <td mat-cell *matCellDef="let professional">
-                <span class="coren-badge">{{ professional.coren }}</span>
-              </td>
-            </ng-container>
+              <!-- COREN Column -->
+              <ng-container matColumnDef="coren">
+                <th mat-header-cell *matHeaderCellDef>COREN</th>
+                <td mat-cell *matCellDef="let professional">
+                  <span class="coren-badge">{{ professional.coren }}</span>
+                </td>
+              </ng-container>
 
-            <!-- Created Date Column -->
-            <ng-container matColumnDef="created_at">
-              <th mat-header-cell *matHeaderCellDef>Criado</th>
-              <td mat-cell *matCellDef="let professional">
-                {{ formatDate(professional.created_at) }}
-              </td>
-            </ng-container>
+              <!-- Created Date Column -->
+              <ng-container matColumnDef="created_at">
+                <th mat-header-cell *matHeaderCellDef>Criado</th>
+                <td mat-cell *matCellDef="let professional">
+                  {{ formatDate(professional.created_at) }}
+                </td>
+              </ng-container>
 
-            <!-- Actions Column -->
-            <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef>Ações</th>
-              <td mat-cell *matCellDef="let professional" class="actions-cell">
-                <button
-                  mat-icon-button
-                  color="primary"
-                  (click)="openEditDialog(professional)"
-                  matTooltip="Editar Profissional"
+              <!-- Actions Column -->
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Ações</th>
+                <td
+                  mat-cell
+                  *matCellDef="let professional"
+                  class="actions-cell"
                 >
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button
-                  mat-icon-button
-                  color="warn"
-                  (click)="deleteProfessional(professional)"
-                  matTooltip="Excluir Profissional"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </td>
-            </ng-container>
+                  <button
+                    mat-icon-button
+                    color="primary"
+                    (click)="openEditDialog(professional)"
+                    matTooltip="Editar Profissional"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="deleteProfessional(professional)"
+                    matTooltip="Excluir Profissional"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
-        </div>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </div>
         }
       </mat-card-content>
     </mat-card>

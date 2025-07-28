@@ -50,7 +50,7 @@ interface DialogData {
 export class ProfessionalDialogComponent {
   private readonly fb = inject(FormBuilder);
   private readonly dialogRef = inject(
-    MatDialogRef<ProfessionalDialogComponent>
+    MatDialogRef<ProfessionalDialogComponent>,
   );
 
   public professionalForm: FormGroup;
@@ -90,7 +90,7 @@ export class ProfessionalDialogComponent {
     if (control?.hasError('minlength')) {
       const minLength = control.errors?.['minlength'].requiredLength;
       return `${this.getFieldLabel(
-        controlName
+        controlName,
       )} deve ter pelo menos ${minLength} caracteres`;
     }
 

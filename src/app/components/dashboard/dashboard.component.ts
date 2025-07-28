@@ -170,8 +170,8 @@ export class DashboardComponent implements OnInit {
       next: (updatedProfessional) => {
         this.professionals.update((professionals) =>
           professionals.map((p) =>
-            p.coren === coren ? updatedProfessional : p
-          )
+            p.coren === coren ? updatedProfessional : p,
+          ),
         );
         this.snackBar.open('Profissional atualizado com sucesso', 'Fechar', {
           duration: 3000,
@@ -200,7 +200,7 @@ export class DashboardComponent implements OnInit {
         .subscribe({
           next: () => {
             this.professionals.update((professionals) =>
-              professionals.filter((p) => p.coren !== professional.coren)
+              professionals.filter((p) => p.coren !== professional.coren),
             );
             this.snackBar.open('Profissional excluído com sucesso', 'Fechar', {
               duration: 3000,

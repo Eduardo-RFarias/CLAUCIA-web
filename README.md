@@ -1,180 +1,181 @@
-# Professional Management System
+# CLAUCIA WEB
 
-A modern Angular application for healthcare institutions to manage their nursing professionals. Built with Angular 20, Angular Material, and TypeScript.
+Aplicação web para gerenciamento de profissionais de enfermagem para instituições de saúde do sistema CLAUCIA.
 
-## Features
+## Sobre o Projeto
 
-- 🏥 **Institution Authentication** - Secure login system with JWT tokens
-- 👥 **Professional Management** - Create, read, update, and delete nursing professionals
-- 🎨 **Modern UI** - Material Design 3 components with responsive layout
-- 🔒 **Route Protection** - Authentication guards to protect sensitive routes
-- 📱 **Responsive Design** - Works seamlessly on desktop and mobile devices
-- ⚡ **Performance** - Lazy loading, signals, and optimized Angular features
+Esta aplicação web foi desenvolvida para complementar o sistema CLAUCIA, facilitando o gerenciamento de profissionais de enfermagem por instituições de saúde. O sistema permite o cadastro, visualização, edição e exclusão de profissionais, com autenticação segura baseada em JWT para instituições.
 
-## Tech Stack
+## Tecnologias Utilizadas
 
-- **Angular 20** - Latest Angular with standalone components and signals
-- **Angular Material** - Material Design components
-- **TypeScript** - Type-safe development
-- **RxJS** - Reactive programming
-- **SCSS** - Advanced styling capabilities
+- **Angular 20**: Framework para desenvolvimento de aplicações web modernas
+- **TypeScript**: Linguagem de programação fortemente tipada
+- **Angular Material**: Componentes de interface baseados no Material Design
+- **RxJS**: Programação reativa para JavaScript
+- **SCSS**: Pré-processador CSS para estilização avançada
+- **JWT**: Autenticação baseada em tokens
 
-## Prerequisites
+## Pré-requisitos
 
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js (versão 18+)
+- npm ou yarn
 - Angular CLI (`npm install -g @angular/cli`)
 
-## Getting Started
+## Configuração do Ambiente
 
-1. **Clone the repository**
+1. Clone o repositório:
 
-   ```bash
-   git clone <repository-url>
+   ```
+   git clone <url-do-repositorio>
    cd tcc-web
    ```
 
-2. **Install dependencies**
+2. Instale as dependências:
 
-   ```bash
+   ```
    npm install
    ```
 
-3. **Start the development server**
+3. Configure as variáveis de ambiente:
+   As configurações de ambiente estão em `src/environments/`:
 
-   ```bash
-   npm start
-   ```
+   - `environment.ts` (desenvolvimento)
+   - `environment.prod.ts` (produção)
 
-4. **Open your browser**
-   Navigate to `http://localhost:4200`
+4. Configure a integração com a API:
 
-## API Integration
+   Certifique-se de que a API CLAUCIA esteja rodando em `http://localhost:3000`
 
-The application integrates with a backend API running on `http://localhost:3000`. Ensure your backend API is running and follows the swagger specification provided in `swagger.json`.
+## Executando a Aplicação
 
-### API Endpoints Used
+### Modo de Desenvolvimento
 
-- `POST /auth/login/institution` - Institution authentication
-- `GET /professionals` - List all professionals
-- `POST /professionals` - Create new professional
-- `PATCH /professionals/{coren}` - Update professional
-- `DELETE /professionals/{coren}` - Delete professional
+```
+npm start
+```
 
-## Project Structure
+### Modo de Produção
+
+```
+npm run build
+npm run build --prod
+```
+
+## Estrutura do Projeto
 
 ```
 src/
 ├── app/
 │   ├── components/
-│   │   ├── login/                 # Login component
-│   │   ├── dashboard/             # Main dashboard
-│   │   └── professional-dialog/   # Professional form dialog
+│   │   ├── login/                 # Componente de autenticação
+│   │   ├── dashboard/             # Dashboard principal
+│   │   └── professional-dialog/   # Formulário de profissionais
 │   ├── services/
-│   │   ├── auth.service.ts        # Authentication service
-│   │   └── professional.service.ts # Professional API service
+│   │   ├── auth.service.ts        # Serviço de autenticação
+│   │   └── professional.service.ts # Serviço de profissionais
 │   ├── guards/
-│   │   └── auth.guard.ts          # Route protection
+│   │   └── auth.guard.ts          # Proteção de rotas
 │   ├── interceptors/
-│   │   └── auth.interceptor.ts    # JWT token interceptor
+│   │   └── auth.interceptor.ts    # Interceptador de tokens JWT
 │   ├── models/
-│   │   └── api.models.ts          # TypeScript interfaces
-│   ├── app.config.ts              # App configuration
-│   └── app.routes.ts              # Routing configuration
-└── styles.scss                    # Global styles
+│   │   └── api.models.ts          # Interfaces TypeScript
+│   ├── app.config.ts              # Configuração da aplicação
+│   └── app.routes.ts              # Configuração de rotas
+└── styles.scss                    # Estilos globais
 ```
 
-## Features Overview
+## Funcionalidades
 
-### Authentication
+### Autenticação de Instituições
 
-- Institution-based login with name and password
-- JWT token storage in localStorage
-- Automatic token validation and refresh
-- Protected routes with authentication guards
+- Login baseado em nome da instituição e senha
+- Armazenamento de token JWT no localStorage
+- Validação automática de tokens
+- Proteção de rotas com guards de autenticação
 
-### Professional Management
+### Gerenciamento de Profissionais
 
-- **View Professionals**: Table view with pagination and sorting
-- **Add Professional**: Modal form with validation
-- **Edit Professional**: In-place editing with change detection
-- **Delete Professional**: Confirmation dialog for safe deletion
+- **Visualizar Profissionais**: Tabela com paginação e ordenação
+- **Adicionar Profissional**: Formulário modal com validação
+- **Editar Profissional**: Edição in-line com detecção de mudanças
+- **Excluir Profissional**: Diálogo de confirmação para exclusão segura
 
-### User Experience
+### Experiência do Usuário
 
-- **Loading States**: Spinners and progress indicators
-- **Error Handling**: User-friendly error messages
-- **Success Feedback**: Confirmation messages for actions
-- **Responsive Design**: Mobile-first approach
-- **Accessibility**: ARIA labels and keyboard navigation
+- **Estados de Carregamento**: Indicadores de progresso
+- **Tratamento de Erros**: Mensagens amigáveis de erro
+- **Feedback de Sucesso**: Confirmações para ações realizadas
+- **Design Responsivo**: Abordagem mobile-first
+- **Acessibilidade**: Labels ARIA e navegação por teclado
 
-## Development
+## Integração com API
 
-### Code Style
+A aplicação se integra com a API CLAUCIA rodando em `http://localhost:3000`. Certifique-se de que a API backend esteja rodando e siga a especificação swagger.
 
-- **Angular Style Guide**: Follows official Angular coding standards
-- **TypeScript**: Strict type checking enabled
-- **Reactive Forms**: Template-driven forms with validation
-- **Signals**: Modern Angular reactivity patterns
-- **Standalone Components**: No NgModules approach
+### Endpoints da API Utilizados
 
-### Testing
+- `POST /auth/login/institution` - Autenticação de instituição
+- `GET /professionals` - Listar todos os profissionais
+- `POST /professionals` - Criar novo profissional
+- `PATCH /professionals/{coren}` - Atualizar profissional
+- `DELETE /professionals/{coren}` - Excluir profissional
+
+## Desenvolvimento
+
+### Padrões de Código
+
+- **Guia de Estilo Angular**: Segue os padrões oficiais do Angular
+- **TypeScript**: Verificação rigorosa de tipos habilitada
+- **Componentes Standalone**: Abordagem sem NgModules
+- **Signals**: Padrões de reatividade modernos do Angular
+- **Formulários Reativos**: Validação de formulários
+
+### Build
 
 ```bash
-# Run unit tests
-npm test
-
-# Run e2e tests
-npm run e2e
-```
-
-### Building
-
-```bash
-# Development build
+# Build de desenvolvimento
 npm run build
 
-# Production build
+# Build de produção
 npm run build --prod
 ```
 
-## Configuration
+## Configuração
 
-### Environment Variables
+### Variáveis de Ambiente
 
-The application uses the following configuration:
+A aplicação utiliza as seguintes configurações:
 
-- **API_URL**: Backend API URL (default: `http://localhost:3000`)
-- **TOKEN_KEY**: LocalStorage key for JWT token
-- **INSTITUTION_KEY**: LocalStorage key for institution data
+- **API_URL**: URL da API backend (padrão: `http://localhost:3000`)
+- **TOKEN_KEY**: Chave do localStorage para token JWT
+- **INSTITUTION_KEY**: Chave do localStorage para dados da instituição
 
-### Material Theme
+### Tema Material
 
-The app uses Angular Material with a custom theme configured in `src/styles.scss`. You can customize colors and typography by modifying the Material theme configuration.
+A aplicação utiliza Angular Material com tema customizado configurado em `src/styles.scss`. Você pode personalizar cores e tipografia modificando a configuração do tema Material.
 
-## Security
+## Segurança
 
-- JWT tokens are stored in localStorage
-- HTTP interceptor automatically adds authorization headers
-- Route guards prevent unauthorized access
-- Form validation prevents malicious input
-- CSRF protection through Angular's built-in mechanisms
+- Tokens JWT armazenados no localStorage
+- Interceptador HTTP adiciona automaticamente headers de autorização
+- Guards de rota previnem acesso não autorizado
+- Validação de formulários previne entrada maliciosa
+- Proteção CSRF através dos mecanismos integrados do Angular
 
-## Browser Support
+## Suporte a Navegadores
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+- Chrome (última versão)
+- Firefox (última versão)
+- Safari (última versão)
+- Edge (última versão)
 
-## Contributing
+## Comandos Úteis
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if necessary
-5. Submit a pull request
+- Iniciar servidor de desenvolvimento: `npm start`
+- Build da aplicação: `npm run build`
+- Executar linting: `npm run lint`
+- Formatação de código: `npm run format`
 
-## License
+## Licença
 
-This project is licensed under the MIT License.
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para mais detalhes.

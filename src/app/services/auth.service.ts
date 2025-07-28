@@ -23,7 +23,7 @@ export class AuthService {
   // Signals for reactive state management
   public isAuthenticated = signal<boolean>(this.hasValidToken());
   public currentInstitution = signal<InstitutionResponseDto | null>(
-    this.getStoredInstitution()
+    this.getStoredInstitution(),
   );
 
   constructor() {
@@ -45,7 +45,7 @@ export class AuthService {
 
           // Store institution data from the JWT token
           const institutionData = this.getInstitutionFromToken(
-            response.access_token
+            response.access_token,
           );
           if (institutionData) {
             this.storeInstitution(institutionData);
@@ -55,7 +55,7 @@ export class AuthService {
         catchError((error) => {
           console.error('Login failed:', error);
           return throwError(() => error);
-        })
+        }),
       );
   }
 
@@ -113,7 +113,7 @@ export class AuthService {
         atob(base64)
           .split('')
           .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-          .join('')
+          .join(''),
       );
       return JSON.parse(jsonPayload);
     } catch (error) {
@@ -126,7 +126,7 @@ export class AuthService {
    * Extract institution data from JWT token
    */
   private getInstitutionFromToken(
-    token: string
+    token: string,
   ): InstitutionResponseDto | null {
     const payload = this.parseJwtPayload(token);
     if (!payload || !payload.identifier) return null;

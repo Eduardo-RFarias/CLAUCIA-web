@@ -23,9 +23,11 @@
               loginForm.get('name')?.invalid && loginForm.get('name')?.touched
             "
           />
-          @if ( loginForm.get("name")?.hasError("required") &&
-          loginForm.get("name")?.touched ) {
-          <mat-error>Nome da instituição é obrigatório</mat-error>
+          @if (
+            loginForm.get("name")?.hasError("required") &&
+            loginForm.get("name")?.touched
+          ) {
+            <mat-error>Nome da instituição é obrigatório</mat-error>
           }
         </mat-form-field>
 
@@ -43,9 +45,11 @@
               loginForm.get('password')?.touched
             "
           />
-          @if ( loginForm.get("password")?.hasError("required") &&
-          loginForm.get("password")?.touched ) {
-          <mat-error>Senha é obrigatória</mat-error>
+          @if (
+            loginForm.get("password")?.hasError("required") &&
+            loginForm.get("password")?.touched
+          ) {
+            <mat-error>Senha é obrigatória</mat-error>
           }
         </mat-form-field>
 
@@ -57,15 +61,15 @@
           [disabled]="loginForm.invalid || isLoading()"
         >
           @if (isLoading()) {
-          <ng-container>
-            <mat-spinner diameter="20"></mat-spinner>
-            <span>Entrando...</span>
-          </ng-container>
+            <ng-container>
+              <mat-spinner diameter="20"></mat-spinner>
+              <span>Entrando...</span>
+            </ng-container>
           } @else {
-          <ng-container>
-            <mat-icon>login</mat-icon>
-            <span>Entrar</span>
-          </ng-container>
+            <ng-container>
+              <mat-icon>login</mat-icon>
+              <span>Entrar</span>
+            </ng-container>
           }
         </button>
       </form>
