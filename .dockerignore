@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Build outputs
+dist/
+.angular/
+
+# IDE files
+.vscode/
+.cursor/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log 
